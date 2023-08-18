@@ -32,9 +32,14 @@ async function handleSubmit(e){
     const ul = document.getElementById(category).querySelector('ul')
 
     let res = await axiosInstance.post('',data)
-    console.log(res)
+    if(res.statusText === "Created"){
+
+
     const li = createLi(res.data)
     ul.appendChild(li)
+    e.target.price.value =''
+    e.target.description.value =''
+    }
 }
 
 function createLi(data){
