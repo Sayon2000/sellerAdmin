@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller's admin page</title>
+</head>
+<body>
+    <h2>Welcome to your dashboard</h2>
+    <form >
+        <label for="price">selling price: </label>
+        <input type="text" id="price" required>
+        <label for="description">description :</label>
+        <input type="text" id="description" required>
+        <label for="category">choose a category</label>
+        <select id="category">
+            <option value="food">food</option>
+            <option value="electronics">electronics</option>
+            <option value="skincare">skincare</option>
+        </select>
+        <input type="submit" value="Add Product">
+    </form>
+
+    <div id="products">
+        <h1>Products</h1>
+        <div id="electronics">
+            <h2>Electronics</h2>
+            <ul></ul>
+        </div>
+        <div id="food">
+            <h2>Food</h2>
+            <ul></ul>
+        </div>
+        <div id="skincare">
+            <h2>Skincare</h2>
+            <ul></ul>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<script src="script.js"></script>
+</html>
