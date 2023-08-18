@@ -1,11 +1,25 @@
 let myform = document.querySelector('form')
 myform.addEventListener('submit' , handleSubmit)
 
+window.addEventListener('load' , renderElements)
+
+
+
 const axiosInstance = axios.create({
     baseURL: 'https://crudcrud.com/api/ed024fbbfc744958a0eaf2f8a2415e99/store',
 
   });
 
+
+async function renderElements(e){
+    const res = await axiosInstance.get()
+    console.log(res)
+    res.data.forEach(elem =>{
+        const ul = document.getElementById(elem.category).querySelector('ul')
+        const li = createLi(elem)
+        ul.appendChild(li)
+    })
+}
 
 
 async function handleSubmit(e){
@@ -34,4 +48,22 @@ function createLi(data){
 
     li.appendChild(delBtn)
     return li
+}
+
+let products = document.getElementById('products')
+products.addEventListener('click' , handleClick)
+
+async function handleClick(e){
+    if(e.target.classList.contains('delete')){
+        let ul = e.target.parentNode.parentNode;
+        let li = e.target.parentNode
+        let id = e.target.id
+        console.log(id)
+        let res = await axiosInstance.delete(`/${id}`)
+        console.log(res)
+        if(res.status === 200){
+            ul.removeChild(li)
+        }
+
+    }
 }
